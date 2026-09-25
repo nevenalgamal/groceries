@@ -28,15 +28,21 @@ const INVENTORY = [
  */
 function getIds(items) {
   // TODO
+  const idItem = items.map((item) => item.id);
+  return idItem;
 }
+//console.log(getIds(INVENTORY));
 
 /**
- * @param {Item[]} items
+ * @param {Item[]}
  * @returns {string[]} categories of given items
  */
 function getCategories(items) {
   // TODO
+  const categories = items.map((item) => item.category);
+  return categories;
 }
+//console.log(getCategories(INVENTORY));
 
 /**
  * Vendors often use SKUs (Stock Keeping Units) to manage their inventory.
@@ -49,15 +55,23 @@ function getCategories(items) {
  */
 function getSkus(items) {
   // TODO
+  const skus = items.map(
+    (item) => `${item.id} # ${item.name} # ${item.name.length}`,
+  );
+  return skus;
 }
+//console.log(getSkus(INVENTORY));
 
 /**
- * @param {Item[]} items
+ * @param {Item[]}
  * @returns {Item[]} all items in the "fruit" category
  */
 function getFruits(items) {
   // TODO
+  const fruits = items.filter((item) => item.category === "fruit");
+  return fruits;
 }
+//console.log(getFruits(INVENTORY));
 
 /**
  * @param {Item[]} items
@@ -66,7 +80,10 @@ function getFruits(items) {
  */
 function getItemsByCategory(items, category) {
   // TODO
+  const categoryItems = items.filter((item) => item.category === category);
+  return categoryItems;
 }
+//console.log(getItemsByCategory(INVENTORY, "dairy"));
 
 /**
  * An item is considered "cheap" if its price is $2.50 or less.
@@ -75,7 +92,10 @@ function getItemsByCategory(items, category) {
  */
 function getCheapItems(items) {
   // TODO
+  const cheapItems = items.filter((item) => item.price <= 2.5);
+  return cheapItems;
 }
+//console.log(getCheapItems(INVENTORY));
 
 /**
  * @param {Item[]} items
@@ -83,7 +103,12 @@ function getCheapItems(items) {
  */
 function countItems(items) {
   // TODO
+  const totalQuantity = items.reduce((total, item) => {
+    return total + item.quantity;
+  }, 0);
+  return totalQuantity;
 }
+//console.log(countItems(INVENTORY));
 
 /**
  * @param {Item[]} items
@@ -91,7 +116,13 @@ function countItems(items) {
  */
 function getTotalCost(items) {
   // TODO
+  const cost = items.reduce((total, item) => {
+    return total + item.price * item.quantity;
+  }, 0);
+
+  return cost;
 }
+console.log(getTotalCost(INVENTORY));
 
 /**
  * @param {Item[]} items
@@ -99,4 +130,14 @@ function getTotalCost(items) {
  */
 function getMostExpensiveItem(items) {
   // TODO
+  const highestPrice = items.reduce((highesItem, item) => {
+    if (highesItem.price > item.price) {
+      return highesItem;
+    } else {
+      return item;
+    }
+  }, items[0]);
+
+  return highestPrice;
 }
+console.log(getMostExpensiveItem(INVENTORY));
